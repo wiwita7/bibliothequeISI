@@ -1,0 +1,1 @@
+# Fonctions pour valider les champs (email, téléphone)
