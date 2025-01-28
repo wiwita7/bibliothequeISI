@@ -1,4 +1,8 @@
-import database.connection
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from database.connection import Database
 
 class Auteur:
     def __init__(self, nom, nationalite):
@@ -7,7 +11,7 @@ class Auteur:
 
     def save(self):
         """Sauvegarder l'auteur dans MongoDB"""
-        db = database.connection.Database()
+        db = Database()
         auteurs = db.get_collection("auteurs")
         auteurs.insert_one(self.__dict__)  # Insère les données dans MongoDB
         db.close_connection()

@@ -1,7 +1,9 @@
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from model.Livre import Livre
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'c:/Users/pc/Documents/Master/Python/Projet/bibliotheque/')))
+
+#sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from model.Livre import Livre 
 
 
 if __name__ == "__main__":
