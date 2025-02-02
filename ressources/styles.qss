@@ -1,0 +1,39 @@
+/* ==========================
+   📚 TableView (Livres)
+   ========================== */
+
+QTableView {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #DDDDDD;
+    gridline-color: #BBBBBB;
+    selection-background-color: rgba(5, 19, 128, 0.2);
+    selection-color: #051380;
+    font-size: 14px;
+}
+
+/* 📌 Entête de la Table */
+QHeaderView::section {
+    background-color: rgb(5, 19, 128);
+    color: white;
+    padding: 8px;
+    border: 1px solid #DDDDDD;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 🛠️ Alternance des couleurs de lignes */
+QTableView::item {
+    padding: 5px;
+}
+
+QTableView::item:selected {
+    background-color: rgba(5, 19, 128, 0.2);
+    color: #051380;
+    font-weight: bold;
+}
+
+/* 🎨 Effet Hover */
+QTableView::item:hover {
+    background-color: rgba(5, 19, 128, 0.1);
+}

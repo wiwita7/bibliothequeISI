@@ -1,26 +1,16 @@
+from PySide6.QtWidgets import QApplication
+from dash import Dashboard
+from login import LoginWindow
+from PySide6.QtGui import QIcon, QPixmap
+
 import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'c:/Users/pc/Documents/Master/Python/Projet/bibliotheque/')))
-
-#sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from model.Livre import Livre 
-
+# Run the application
 
 if __name__ == "__main__":
-    # Ajouter un livre
-    livre = Livre("Les Misérables", "Victor Hugo", 1862)
-    livre.save()
+    app = QApplication(sys.argv)
+    window = LoginWindow()
+    window.setWindowTitle("Library Login")
+    window.setWindowIcon(QIcon("../ressources/icons/uit-white.png"))
+    window.show()
 
-    # Afficher tous les livres
-    print("📚 Liste des livres :")
-    livres = Livre.get_all()
-    for livre in livres:
-        print(livre)
-
-    # Mettre à jour un livre
-    Livre.update("Les Misérables", {"annee": 1870})
-    print("📚 Après mise à jour :", Livre.get_all())
-
-    # Supprimer un livre
-    Livre.delete("Les Misérables")
-    print("📚 Après suppression :", Livre.get_all())
+    sys.exit(app.exec())
