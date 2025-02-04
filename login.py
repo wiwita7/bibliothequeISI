@@ -5,7 +5,7 @@ from PySide6.QtCore import Qt, QPoint
 from views.log import Ui_Form  # Import the auto-generated UI file
 import time
 from PySide6.QtCore import QTimer
-from dash_view import MainWindow  # Import Dashboard
+from dash_view import DashboardWindow  # Import Dashboard
 
 
 class LoginWindow(QMainWindow):
@@ -155,7 +155,7 @@ class LoginWindow(QMainWindow):
 
     def open_dashboard(self):
         """Open the dashboard window."""
-        self.dashboard = MainWindow()  # Create an instance of the Dashboard class
+        self.dashboard = DashboardWindow()()  # Create an instance of the Dashboard class
         self.dashboard.show()  # Show the dashboard window
         self.close()  # Close the login window
 

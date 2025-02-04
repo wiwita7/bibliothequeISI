@@ -104,11 +104,17 @@ border-bottom-color: rgb(65,105,225);
 color:rgbd(0,0,0,0);
 padding-bottom:7px;</string>
     </property>
+    <property name="text">
+     <string/>
+    </property>
     <property name="echoMode">
      <enum>QLineEdit::Normal</enum>
     </property>
     <property name="cursorPosition">
      <number>0</number>
+    </property>
+    <property name="placeholderText">
+     <string>username</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="password">
@@ -137,6 +143,9 @@ padding-bottom:7px;</string>
     </property>
     <property name="cursorPosition">
      <number>0</number>
+    </property>
+    <property name="placeholderText">
+     <string>password</string>
     </property>
    </widget>
    <widget class="QLabel" name="ForgotPass">
@@ -170,7 +179,7 @@ padding-bottom:7px;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../ressources/icons/uit-white.png</pixmap>
+     <pixmap resource="../ressources/icons/icon.qrc">:/icons/uit-white.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -224,7 +233,7 @@ padding-bottom:7px;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../ressources/icons/library-80.png</pixmap>
+     <pixmap resource="../ressources/icons/icon.qrc">:/icons/library-80.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -278,7 +287,7 @@ padding-bottom:7px;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../ressources/icons/library-80.png</pixmap>
+     <pixmap resource="../ressources/icons/icon.qrc">:/icons/library-80.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -307,7 +316,7 @@ padding-bottom:7px;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../ressources/icons/library-80.png</pixmap>
+     <pixmap resource="../ressources/icons/icon.qrc">:/icons/library-80.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -419,8 +428,8 @@ background-color:rgb(85,105,255);
      <string/>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>../ressources/icons/eye.png</normaloff>../ressources/icons/eye.png</iconset>
+     <iconset resource="../ressources/icons/icon.qrc">
+      <normaloff>:/icons/eye-slash.png</normaloff>:/icons/eye-slash.png</iconset>
     </property>
     <property name="flat">
      <bool>true</bool>
@@ -428,6 +437,8 @@ background-color:rgb(85,105,255);
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../ressources/icons/icon.qrc"/>
+ </resources>
  <connections/>
 </ui>

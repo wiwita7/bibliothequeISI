@@ -5,14 +5,17 @@ from PySide6.QtGui import *
 from PySide6.QtGui import QIcon 
 from PySide6.QtWidgets import QSizeGrip  ,QGraphicsOpacityEffect
 import sys
+from PySide6.QtCore import QTimer
+from views.notification import NotificationWindow
 
 #main classe
-class MainWindow(QMainWindow):
+class DashboardWindow(QMainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
+        QTimer.singleShot(1000, lambda: self.showNotification("Welcome to UIT Library!"))
 
         #hide window tittle bar
         self.setWindowFlags(Qt.FramelessWindowHint)
@@ -36,7 +39,9 @@ class MainWindow(QMainWindow):
         #set size grip to size window
         QSizeGrip(self.ui.size_grip)  
 
-        
+        # Example: Show notification when window opens
+        QTimer.singleShot(1000, lambda: self.showNotification("Welcome to UIT Library!"))
+
         #minimize window
         self.ui.minimize_btn.clicked.connect(self.showMinimized)
         #close window
@@ -66,9 +71,30 @@ class MainWindow(QMainWindow):
         self.ui.author_btn.clicked.connect(lambda: self.changePageWithAnimation(self.ui.author_page))
         self.ui.loan_btn.clicked.connect(lambda: self.changePageWithAnimation(self.ui.management_page))  # Loans Page
         self.ui.sub_btn.clicked.connect(lambda: self.changePageWithAnimation(self.ui.sub_page))  # Subscribers Page
+        self.setStyleSheet("""
+            QMainWindow {
+                background-color: rgb(255, 255, 255);  /* Set window background */
+                border-radius: 10px;  /* Rounded corners */
+            }
+        """)
 
+        self.ui.notification_btn.clicked.connect(lambda: self.showNotification("You have a new notification!"))
         self.show()
+        
     from PySide6.QtCore import QPropertyAnimation
+    def showNotification(self, message="New Notification!"):
+        """Creates and displays a floating notification at the button's location."""
+
+        # ✅ Get the notification button's global position
+        btn_position = self.ui.notification_btn.mapToGlobal(QPoint(0, self.ui.notification_btn.height()))
+
+        # ✅ Adjust notification position (so it appears below the button)
+        notification_x = btn_position.x()  # Same X position
+        notification_y = btn_position.y() + 10  # Move slightly below the button
+
+        # ✅ Create and show the notification
+        self.notification = NotificationWindow(message, position=QPoint(notification_x, notification_y))
+        self.notification.show()
 
     def addHoverAnimation(self, button):
         """Create a hover effect that scales the button when hovered."""
@@ -91,6 +117,12 @@ class MainWindow(QMainWindow):
         animation.setEndValue(rect.adjusted(-offset_x, -offset_y, offset_x, offset_y))
         animation.setEasingCurve(QEasingCurve.OutCubic)
         animation.start()
+    from views.notification import NotificationWindow  # ✅ Import Notification Class
+
+    def showNotification(self, message="New Notification!"):
+        """Displays a floating notification when the notification button is clicked."""
+        self.notification = NotificationWindow(message)
+        self.notification.show()
 
     def changePageWithAnimation(self, index):
         """Apply a sliding animation when changing pages in QStackedWidget."""
@@ -226,6 +258,6 @@ class MainWindow(QMainWindow):
   
 if __name__ == '__main__':
     app=QApplication(sys.argv)
-    window=MainWindow( )
+    window=DashboardWindow( )
     window.show()
     sys.exit(app.exec())

@@ -47,7 +47,6 @@ class Ui_MainWindow(object):
 "QPushButton{\n"
 "	padding:10px;\n"
 "	background-color:rgb(0, 0, 127);\n"
-"	border-radius:5px;\n"
 "}\n"
 "\n"
 "")
@@ -248,7 +247,9 @@ class Ui_MainWindow(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.header = QFrame(self.main_body)
         self.header.setObjectName(u"header")
+        self.header.setEnabled(True)
         self.header.setStyleSheet(u"border-top-radius: 10px;\n"
+"\n"
 "background-color: rgb(5, 19, 128);")
         self.header.setFrameShape(QFrame.StyledPanel)
         self.header.setFrameShadow(QFrame.Raised)
@@ -266,10 +267,17 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.menu_btn = QPushButton(self.frame)
         self.menu_btn.setObjectName(u"menu_btn")
+        self.menu_btn.setStyleSheet(u"QPushButton:hover {\n"
+"	background-color: rgb(0, 0, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(0, 0, 176);\n"
+"}")
         icon6 = QIcon()
         icon6.addFile(u":/icons/align-left.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.menu_btn.setIcon(icon6)
-        self.menu_btn.setIconSize(QSize(35, 35))
+        self.menu_btn.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_8.addWidget(self.menu_btn)
 
@@ -304,16 +312,16 @@ class Ui_MainWindow(object):
 "    }\n"
 "")
 
-        self.horizontalLayout_7.addWidget(self.lineEdit, 0, Qt.AlignLeft)
+        self.horizontalLayout_7.addWidget(self.lineEdit)
 
         self.pushButton_6 = QPushButton(self.frame_4)
         self.pushButton_6.setObjectName(u"pushButton_6")
         icon7 = QIcon()
         icon7.addFile(u":/icons/search.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.pushButton_6.setIcon(icon7)
-        self.pushButton_6.setIconSize(QSize(30, 30))
+        self.pushButton_6.setIconSize(QSize(25, 25))
 
-        self.horizontalLayout_7.addWidget(self.pushButton_6, 0, Qt.AlignLeft)
+        self.horizontalLayout_7.addWidget(self.pushButton_6)
 
 
         self.horizontalLayout_2.addWidget(self.frame_4, 0, Qt.AlignLeft|Qt.AlignTop)
@@ -328,19 +336,33 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
         self.users_btn = QPushButton(self.frame_2)
         self.users_btn.setObjectName(u"users_btn")
+        self.users_btn.setStyleSheet(u"QPushButton:hover {\n"
+"	background-color: rgb(0, 0, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(0, 0, 176);\n"
+"}")
         icon8 = QIcon()
         icon8.addFile(u":/icons/user.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.users_btn.setIcon(icon8)
-        self.users_btn.setIconSize(QSize(30, 30))
+        self.users_btn.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_6.addWidget(self.users_btn)
 
         self.notification_btn = QPushButton(self.frame_2)
         self.notification_btn.setObjectName(u"notification_btn")
+        self.notification_btn.setStyleSheet(u"QPushButton:hover {\n"
+"	background-color: rgb(0, 0, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(0, 0, 176);\n"
+"}")
         icon9 = QIcon()
         icon9.addFile(u":/icons/notification.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.notification_btn.setIcon(icon9)
-        self.notification_btn.setIconSize(QSize(32, 32))
+        self.notification_btn.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_6.addWidget(self.notification_btn)
 
@@ -357,6 +379,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.minimize_btn = QPushButton(self.frame_3)
         self.minimize_btn.setObjectName(u"minimize_btn")
+        self.minimize_btn.setStyleSheet(u"QPushButton:hover {\n"
+"	background-color: rgb(0, 0, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(0, 0, 176);\n"
+"}")
         icon10 = QIcon()
         icon10.addFile(u":/icons/down-left-arrow.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.minimize_btn.setIcon(icon10)
@@ -366,6 +395,13 @@ class Ui_MainWindow(object):
 
         self.restore_win_btn = QPushButton(self.frame_3)
         self.restore_win_btn.setObjectName(u"restore_win_btn")
+        self.restore_win_btn.setStyleSheet(u"QPushButton:hover {\n"
+"	background-color: rgb(0, 0, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color:rgb(0, 0, 176);\n"
+"}")
         icon11 = QIcon()
         icon11.addFile(u":/icons/maximize.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.restore_win_btn.setIcon(icon11)
@@ -375,10 +411,23 @@ class Ui_MainWindow(object):
 
         self.close_btn = QPushButton(self.frame_3)
         self.close_btn.setObjectName(u"close_btn")
+        self.close_btn.setStyleSheet(u"QPushButton:hover {\n"
+"	background-color: rgb(255, 38, 0);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgb(255, 0, 0);\n"
+"}\n"
+"QPushButton {\n"
+"	\n"
+"	border-radius:0px;\n"
+"	border-top-right-radius: 10px;\n"
+"\n"
+"}")
         icon12 = QIcon()
         icon12.addFile(u":/icons/close.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.close_btn.setIcon(icon12)
-        self.close_btn.setIconSize(QSize(30, 30))
+        self.close_btn.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_5.addWidget(self.close_btn)
 
@@ -405,7 +454,7 @@ class Ui_MainWindow(object):
         self.home_page.setObjectName(u"home_page")
         self.label_5 = QLabel(self.home_page)
         self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(430, 190, 331, 161))
+        self.label_5.setGeometry(QRect(320, 190, 331, 161))
         font1 = QFont()
         font1.setPointSize(25)
         font1.setBold(True)
@@ -448,7 +497,8 @@ class Ui_MainWindow(object):
 
         self.footer = QFrame(self.main_body)
         self.footer.setObjectName(u"footer")
-        self.footer.setStyleSheet(u"background-color:rgb(240, 240, 240);")
+        self.footer.setStyleSheet(u"background-color:rgb(240, 240, 240);\n"
+"border-bottom-radius: 10px;")
         self.footer.setFrameShape(QFrame.StyledPanel)
         self.footer.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.footer)

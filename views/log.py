@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'log.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.1
+## Created by: Qt User Interface Compiler version 6.8.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -17,6 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QPushButton,
     QSizePolicy, QWidget)
+import ressources.icons.icon
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -82,7 +83,7 @@ class Ui_Form(object):
         self.uitLogo = QLabel(self.widget)
         self.uitLogo.setObjectName(u"uitLogo")
         self.uitLogo.setGeometry(QRect(20, 30, 161, 161))
-        self.uitLogo.setPixmap(QPixmap(u"../ressources/icons/uit-white.png"))
+        self.uitLogo.setPixmap(QPixmap(u":/icons/uit-white.png"))
         self.uitLogo.setScaledContents(True)
         self.label_5 = QLabel(self.widget)
         self.label_5.setObjectName(u"label_5")
@@ -103,7 +104,7 @@ class Ui_Form(object):
         self.books1.setFont(font5)
         self.books1.setStyleSheet(u"color:rgba(\n"
 "70,130,180);")
-        self.books1.setPixmap(QPixmap(u"../ressources/icons/library-80.png"))
+        self.books1.setPixmap(QPixmap(u":/icons/library-80.png"))
         self.books1.setScaledContents(True)
         self.label_7 = QLabel(self.widget)
         self.label_7.setObjectName(u"label_7")
@@ -117,7 +118,7 @@ class Ui_Form(object):
         self.books2.setFont(font5)
         self.books2.setStyleSheet(u"color:rgba(\n"
 "70,130,180);")
-        self.books2.setPixmap(QPixmap(u"../ressources/icons/library-80.png"))
+        self.books2.setPixmap(QPixmap(u":/icons/library-80.png"))
         self.books2.setScaledContents(True)
         self.books3 = QLabel(self.widget)
         self.books3.setObjectName(u"books3")
@@ -125,7 +126,7 @@ class Ui_Form(object):
         self.books3.setFont(font5)
         self.books3.setStyleSheet(u"color:rgba(\n"
 "70,130,180);")
-        self.books3.setPixmap(QPixmap(u"../ressources/icons/library-80.png"))
+        self.books3.setPixmap(QPixmap(u":/icons/library-80.png"))
         self.books3.setScaledContents(True)
         self.pushButton = QPushButton(self.widget)
         self.pushButton.setObjectName(u"pushButton")
@@ -179,7 +180,7 @@ class Ui_Form(object):
         self.toggle_password.setStyleSheet(u"background: transparent; border: none;\n"
 "")
         icon = QIcon()
-        icon.addFile(u"../ressources/icons/eye.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/icons/eye-slash.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.toggle_password.setIcon(icon)
         self.toggle_password.setFlat(True)
 
@@ -193,6 +194,9 @@ class Ui_Form(object):
         self.label.setText("")
         self.label_2.setText("")
         self.loginLabel.setText(QCoreApplication.translate("Form", u"Login", None))
+        self.username.setText("")
+        self.username.setPlaceholderText(QCoreApplication.translate("Form", u"username", None))
+        self.password.setPlaceholderText(QCoreApplication.translate("Form", u"password", None))
         self.ForgotPass.setText(QCoreApplication.translate("Form", u"Forgot password?", None))
         self.uitLogo.setText("")
         self.label_5.setText(QCoreApplication.translate("Form", u"Welcome ", None))
