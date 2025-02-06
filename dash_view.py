@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QSizeGrip  ,QGraphicsOpacityEffect
 import sys
 from PySide6.QtCore import QTimer
 from views.notification import NotificationWindow
+from views.dashbord5 import Ui_MainWindow
 
 #main classe
 class DashboardWindow(QMainWindow):
@@ -79,7 +80,14 @@ class DashboardWindow(QMainWindow):
         """)
 
         self.ui.notification_btn.clicked.connect(lambda: self.showNotification("You have a new notification!"))
+        
         self.show()
+
+    def setup_table(self):
+        """Configure the QTableWidget to resize properly."""
+        self.tableWidget_books.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.tableWidget_books.verticalHeader().setVisible(False)  # Hide row numbers
+
         
     from PySide6.QtCore import QPropertyAnimation
     def showNotification(self, message="New Notification!"):
