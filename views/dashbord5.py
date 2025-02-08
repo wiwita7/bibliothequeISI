@@ -471,6 +471,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
         self.frame_13 = QFrame(self.frame_11)
         self.frame_13.setObjectName(u"frame_13")
+        self.frame_13.setStyleSheet(u"background-color: rgb(161, 203, 255);\n"
+"border-radius:10px")
         self.frame_13.setFrameShape(QFrame.StyledPanel)
         self.frame_13.setFrameShadow(QFrame.Raised)
         self.label_27 = QLabel(self.frame_13)
@@ -490,7 +492,7 @@ class Ui_MainWindow(object):
         font1.setPointSize(26)
         font1.setBold(True)
         self.label_26.setFont(font1)
-        self.label_26.setStyleSheet(u"color:#333")
+        self.label_26.setStyleSheet(u"color:white")
 
         self.horizontalLayout_13.addWidget(self.frame_13)
 
@@ -620,6 +622,70 @@ class Ui_MainWindow(object):
 "QTableView::item:hover {\n"
 "    background-color: #d3eaff;\n"
 "    color: #000000;\n"
+"}\n"
+"/* For WebKit browsers (Chrome, Safari) */\n"
+"QTableView {\n"
+"    border: 1px solid #dcdcdc;\n"
+"}\n"
+"\n"
+"QTableView::horizontalScrollBar, QTableView::verticalScrollBar {\n"
+"    background: #f0f0f0;\n"
+"}\n"
+"\n"
+"QScrollBar:horizontal {\n"
+"    border: none;\n"
+"    background: #f0f0f0;\n"
+"    height: 15px;\n"
+"    margin: 0px 20px 0 2"
+                        "0px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal {\n"
+"    background: #b0b0b0;\n"
+"    min-width: 20px;\n"
+"    border-radius: 7px;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {\n"
+"    background: #dcdcdc;\n"
+"    width: 20px;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:horizontal:hover, QScrollBar::sub-line:horizontal:hover {\n"
+"    background: #c0c0c0;\n"
+"}\n"
+"\n"
+"QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {\n"
+"    background: none;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical {\n"
+"    border: none;\n"
+"    background: #f0f0f0;\n"
+"    width: 15px;\n"
+"    margin: 20px 0 20px 0;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
+"    background: #b0b0b0;\n"
+"    min-height: 20px;\n"
+"    border-radius: 7px;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {\n"
+"    background: #dcdcdc;\n"
+"    height: 20px;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical:hover, QScrollBa"
+                        "r::sub-line:vertical:hover {\n"
+"    background: #c0c0c0;\n"
+"}\n"
+"\n"
+"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+"    background: none;\n"
 "}")
         self.tableWidget_books.setGridStyle(Qt.NoPen)
         self.tableWidget_books.setRowCount(15)

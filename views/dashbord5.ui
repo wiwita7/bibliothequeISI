@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1220</width>
-    <height>718</height>
+    <width>1369</width>
+    <height>835</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -924,6 +924,10 @@ QPushButton {
                 <layout class="QHBoxLayout" name="horizontalLayout_13">
                  <item>
                   <widget class="QFrame" name="frame_13">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(161, 203, 255);
+border-radius:10px</string>
+                   </property>
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
@@ -970,7 +974,7 @@ QPushButton {
                      </font>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">color:#333</string>
+                     <string notr="true">color:white</string>
                     </property>
                     <property name="text">
                      <string>Books</string>
@@ -1124,6 +1128,68 @@ QTableView::item:selected {
 QTableView::item:hover {
     background-color: #d3eaff;
     color: #000000;
+}
+/* For WebKit browsers (Chrome, Safari) */
+QTableView {
+    border: 1px solid #dcdcdc;
+}
+
+QTableView::horizontalScrollBar, QTableView::verticalScrollBar {
+    background: #f0f0f0;
+}
+
+QScrollBar:horizontal {
+    border: none;
+    background: #f0f0f0;
+    height: 15px;
+    margin: 0px 20px 0 20px;
+}
+
+QScrollBar::handle:horizontal {
+    background: #b0b0b0;
+    min-width: 20px;
+    border-radius: 7px;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    background: #dcdcdc;
+    width: 20px;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-line:horizontal:hover, QScrollBar::sub-line:horizontal:hover {
+    background: #c0c0c0;
+}
+
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    background: none;
+}
+
+QScrollBar:vertical {
+    border: none;
+    background: #f0f0f0;
+    width: 15px;
+    margin: 20px 0 20px 0;
+}
+
+QScrollBar::handle:vertical {
+    background: #b0b0b0;
+    min-height: 20px;
+    border-radius: 7px;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    background: #dcdcdc;
+    height: 20px;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-line:vertical:hover, QScrollBar::sub-line:vertical:hover {
+    background: #c0c0c0;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
 }</string>
                 </property>
                 <property name="gridStyle">
@@ -1432,6 +1498,7 @@ border-bottom-radius: 10px;</string>
  <resources>
   <include location="../ressources/icons/icon.qrc"/>
   <include location="../../../../../../Downloads/PySide-Responsive-ui-master/PySide-Responsive-ui-master/resources.qrc"/>
+  <include location="../../../../../../.designer/ressources/icons/icon.qrc"/>
  </resources>
  <connections/>
 </ui>

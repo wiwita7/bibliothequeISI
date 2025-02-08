@@ -1,9 +1,9 @@
 from views.dashbord5 import Ui_MainWindow, QMainWindow, QApplication
 from PySide6.QtCore import *
 from PySide6.QtWidgets import QGraphicsDropShadowEffect, QTableWidgetItem, QDialog
-from PySide6.QtGui import QIcon, QColor
+from PySide6.QtGui import QIcon, QColor, QMouseEvent
 from PySide6.QtWidgets import QSizeGrip, QGraphicsOpacityEffect
-import sys
+import sys, os
 from PySide6.QtCore import QTimer
 from views.notification import NotificationWindow
 from database.book_database import BookDatabase
@@ -12,6 +12,11 @@ from views.modifyBook import Ui_DialogModify
 from pymongo import MongoClient
 from ajouter_livre import AddBookWindow  # Importer la nouvelle fenêtre
 from modifier_livre import ModifyBookWindow
+from PySide6.QtWidgets import QDialog, QFileDialog, QMessageBox, QComboBox, QTableWidgetItem
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import landscape, letter
+
 
 # Database Connection
 class Database:
@@ -74,17 +79,116 @@ class DashboardWindow(QMainWindow):
         self.ui.author_btn.clicked.connect(lambda: self.changePageWithAnimation(self.ui.author_page))
         self.ui.loan_btn.clicked.connect(lambda: self.changePageWithAnimation(self.ui.management_page))
         self.ui.sub_btn.clicked.connect(lambda: self.changePageWithAnimation(self.ui.sub_page))
-        self.ui.add_book_btn_2.clicked.connect(self.open_add_book_window)
+        self.ui.add_book_btn_2.clicked.connect(self.open_add_book_window)# Connect the add button
         self.ui.modify_book_btn_2.clicked.connect(self.modify_selected_book)  # Connect the modify button
+        self.ui.print_btn_2.clicked.connect(self.print_books_to_pdf)  # Connect the print button
+        self.ui.pushButton_6.clicked.connect(self.filter_table) #connect search line
 
         # Connect table row click event
         self.ui.tableWidget_books.cellDoubleClicked.connect(self.edit_book)
+        # hide row's numbers
+        self.ui.tableWidget_books.verticalHeader().setVisible(False)
 
         self.load_books()
         self.fadeInAnimation()
 
         self.show()
-    
+
+    def filter_table(self):
+        """ Filter table data based on search_lineEdit input across all columns. """
+        search_text = self.ui.search_lineEdit.text().strip().lower()
+
+        for row in range(self.ui.tableWidget_books.rowCount()):
+            match = False  # Assume no match initially
+
+            for col in range(self.ui.tableWidget_books.columnCount()):
+                item = self.ui.tableWidget_books.item(row, col)
+                if item and search_text in item.text().strip().lower():
+                    match = True
+                    break  # Stop checking other columns if one column matches
+
+            self.ui.tableWidget_books.setRowHidden(row, not match)  # Show/hide row
+
+    def print_books_to_pdf(self):
+        """ Imprime la liste des livres dans un fichier PDF et le sauvegarde sur le bureau """
+        desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+        pdf_path = os.path.join(desktop, "books_list.pdf")
+        
+        # Ensure the Desktop directory exists
+        if not os.path.exists(desktop):
+            os.makedirs(desktop)
+        
+        print(f"Saving PDF to: {pdf_path}")  # Print the path for verification
+        
+        try:
+            c = canvas.Canvas(pdf_path, pagesize=landscape(letter))
+            width, height = landscape(letter)
+
+            # Add title
+            c.setFont("Helvetica-Bold", 16)
+            c.drawString(100, height - 40, "UIT Library's Existing Books")
+            y = height - 60
+
+            # Set font for table content
+            c.setFont("Helvetica", 12)
+            
+            # Column headers
+            c.drawString(50, y, "ID")
+            c.drawString(150, y, "Titre")
+            c.drawString(300, y, "Auteur")
+            c.drawString(450, y, "ISBN")
+            c.drawString(550, y, "Catégorie")
+            c.drawString(700, y, "Disponibilité")
+            c.drawString(850, y, "Description")
+            y -= 20
+
+            books = self.db.get_all_books()
+            for book in books:
+                c.drawString(50, y, f"{book.get('_id', 'Unknown')}")
+                c.drawString(150, y, f"{book.get('titre', 'Unknown')}")
+                c.drawString(300, y, f"{book.get('auteur', 'Unknown')}")
+                c.drawString(450, y, f"{book.get('ISBN', 'Unknown')}")
+                c.drawString(550, y, f"{book.get('categorie', 'Unknown')}")
+                c.drawString(700, y, f"{book.get('disponible', 'Unknown')}")
+                c.drawString(850, y, f"{book.get('description', 'Unknown')}")
+                y -= 20
+                if y < 40:
+                    c.showPage()
+                    y = height - 40
+
+            c.save()
+            QMessageBox.information(self, "PDF Saved", f"The list of books has been saved to {pdf_path}")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to save PDF: {e}")
+
+        ### 🟢 IMPLEMENT DRAGGING FUNCTIONALITY
+    def mousePressEvent(self, event: QMouseEvent):
+        """ Capture the initial position when the mouse is pressed """
+        if event.button() == Qt.LeftButton:
+            self.dragging = True
+            self.offset = event.pos()
+
+    def mouseMoveEvent(self, event: QMouseEvent):
+        """ Move the window when dragging """
+        if self.dragging:
+            self.move(event.globalPos() - self.offset)
+
+    def mouseReleaseEvent(self, event: QMouseEvent):
+        """ Stop dragging when mouse is released """
+        if event.button() == Qt.LeftButton:
+            self.dragging = False
+
+    def delete_row_from_database(self, book_id):
+        # Assuming you have a database connection set up
+        connection = self.database_connection
+        cursor = connection.cursor()
+
+        # Execute the SQL query to delete the row
+        query = "DELETE FROM books WHERE id = ?"
+        cursor.execute(query, (book_id,))
+
+        # Commit the changes
+        connection.commit()
     def open_add_book_window(self):
         """ Ouvre la fenêtre d'ajout de livre """
         self.add_book_window = AddBookWindow()
@@ -107,15 +211,9 @@ class DashboardWindow(QMainWindow):
             QMessageBox.warning(self, "No Selection", "Please select a book to modify.")
 
     def edit_book(self, row, column):
-        """ Open ModifyBookWindow with existing book data for editing """
+        """ Ouvre la fenêtre d'ajout de livre avec les informations existantes """
         book_id = self.ui.tableWidget_books.item(row, 0).text()
         book = self.db.get_book_by_id(book_id)
-
-        if book:
-            self.modify_book_window = ModifyBookWindow()
-            self.modify_book_window.populate_fields(book)  # Load book data
-            self.modify_book_window.book_added.connect(self.load_books)  # Refresh table after editing
-            self.modify_book_window.exec()
         
         if book:
             self.add_book_window = AddBookWindow()
