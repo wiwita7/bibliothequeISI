@@ -8,9 +8,10 @@ from PySide6.QtCore import QTimer
 from views.notification import NotificationWindow
 from database.book_database import BookDatabase
 from views.addBook import Ui_Dialog  
+from views.modifyBook import Ui_DialogModify
 from pymongo import MongoClient
 from ajouter_livre import AddBookWindow  # Importer la nouvelle fenêtre
-
+from modifier_livre import ModifyBookWindow
 
 # Database Connection
 class Database:
@@ -23,7 +24,18 @@ class Database:
 
     def close_connection(self):
         self.client.close()
+class BookDatabase:
+    def __init__(self):
+        self.client = MongoClient("mongodb://localhost:27017/")
+        self.db = self.client["Library_db"]
+        self.books_collection = self.db["books"]
 
+    def get_all_books(self):
+        return list(self.books_collection.find())
+
+    def get_book_by_id(self, book_id):
+        from bson.objectid import ObjectId
+        return self.books_collection.find_one({"_id": ObjectId(book_id)})
 # Dashboard Window
 class DashboardWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -63,7 +75,11 @@ class DashboardWindow(QMainWindow):
         self.ui.loan_btn.clicked.connect(lambda: self.changePageWithAnimation(self.ui.management_page))
         self.ui.sub_btn.clicked.connect(lambda: self.changePageWithAnimation(self.ui.sub_page))
         self.ui.add_book_btn_2.clicked.connect(self.open_add_book_window)
-        
+        self.ui.modify_book_btn_2.clicked.connect(self.modify_selected_book)  # Connect the modify button
+
+        # Connect table row click event
+        self.ui.tableWidget_books.cellDoubleClicked.connect(self.edit_book)
+
         self.load_books()
         self.fadeInAnimation()
 
@@ -74,9 +90,38 @@ class DashboardWindow(QMainWindow):
         self.add_book_window = AddBookWindow()
         self.add_book_window.book_added.connect(self.load_books)  # Mettre à jour la table après ajout
         self.add_book_window.exec()
+    
+    def modify_selected_book(self):
+        """ Ouvre la fenêtre d'ajout de livre avec les informations de la ligne sélectionnée """
+        selected_row = self.ui.tableWidget_books.currentRow()
+        if selected_row >= 0:
+            book_id = self.ui.tableWidget_books.item(selected_row, 0).text()
+            book = self.db.get_book_by_id(book_id)
             
+            if book:
+                self.add_book_window = ModifyBookWindow()
+                self.add_book_window.populate_fields(book)
+                self.add_book_window.book_added.connect(self.load_books)  # Mettre à jour la table après modification
+                self.add_book_window.exec()
+        else:
+            QMessageBox.warning(self, "No Selection", "Please select a book to modify.")
 
-    from PySide6.QtWidgets import QTableWidgetItem
+    def edit_book(self, row, column):
+        """ Open ModifyBookWindow with existing book data for editing """
+        book_id = self.ui.tableWidget_books.item(row, 0).text()
+        book = self.db.get_book_by_id(book_id)
+
+        if book:
+            self.modify_book_window = ModifyBookWindow()
+            self.modify_book_window.populate_fields(book)  # Load book data
+            self.modify_book_window.book_added.connect(self.load_books)  # Refresh table after editing
+            self.modify_book_window.exec()
+        
+        if book:
+            self.add_book_window = AddBookWindow()
+            self.add_book_window.populate_fields(book)
+            self.add_book_window.book_added.connect(self.load_books)  # Mettre à jour la table après modification
+            self.add_book_window.exec()
 
     def load_books(self):
         """ Charge les livres depuis MongoDB et les affiche dans la TableView """
@@ -98,7 +143,6 @@ class DashboardWindow(QMainWindow):
             self.ui.tableWidget_books.setItem(row, 8, QTableWidgetItem(book.get("couverture", "Unknown")))
             self.ui.tableWidget_books.setItem(row, 9, QTableWidgetItem(str(book.get("nombre_exemplaires", "Unknown"))))
 
-    
     def restore_or_maximize_window(self):
         if self.isMaximized():
             self.showNormal()

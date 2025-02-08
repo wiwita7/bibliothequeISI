@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'addBook.ui'
+## Form generated from reading UI file 'modifyBook.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.2
 ##
@@ -16,12 +16,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
-    QHBoxLayout, QLabel, QLineEdit, QPushButton,
-    QSizePolicy, QSpacerItem, QSpinBox, QTextEdit,
-    QVBoxLayout, QWidget)
+    QGridLayout, QHBoxLayout, QLabel, QLineEdit,
+    QPushButton, QSizePolicy, QSpacerItem, QSpinBox,
+    QTextEdit, QVBoxLayout, QWidget)
 import ressources.icons.icon
 
-class Ui_Dialog(object):
+class Ui_DialogModify(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
@@ -80,9 +80,12 @@ class Ui_Dialog(object):
 "    background-color: rgb(0, 0, 176);\n"
 "}\n"
 "")
+        self.gridLayout = QGridLayout(Dialog)
+        self.gridLayout.setSpacing(0)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.frame = QFrame(Dialog)
         self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(0, 0, 528, 611))
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -468,6 +471,9 @@ class Ui_Dialog(object):
         self.verticalLayout.addWidget(self.frame_3)
 
 
+        self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
+
+
         self.retranslateUi(Dialog)
         self.close_btn.toggled.connect(self.close_btn.close)
 
@@ -477,7 +483,7 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
         self.close_btn.setText("")
-        self.label_10.setText(QCoreApplication.translate("Dialog", u"Add Book", None))
+        self.label_10.setText(QCoreApplication.translate("Dialog", u"Modify Book", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"Title", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Author", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Year", None))

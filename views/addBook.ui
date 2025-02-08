@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>526</width>
-    <height>588</height>
+    <height>621</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -74,7 +74,7 @@ QPushButton:pressed {
      <x>0</x>
      <y>0</y>
      <width>528</width>
-     <height>577</height>
+     <height>611</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -486,6 +486,13 @@ QTextEdit:focus {
               <widget class="QLabel" name="label_6">
                <property name="text">
                 <string>image</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="image_label">
+               <property name="text">
+                <string/>
                </property>
               </widget>
              </item>
