@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="icons">
+    <file>down-arrow.png</file>
+    <file>up-arrow.png</file>
     <file>down-left-arrow.png</file>
     <file>zoom.png</file>
     <file>align-left.png</file>

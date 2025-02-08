@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(976, 676)
+        MainWindow.resize(1220, 718)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"\n"
@@ -268,6 +268,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.menu_btn = QPushButton(self.frame)
         self.menu_btn.setObjectName(u"menu_btn")
+        self.menu_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.menu_btn.setStyleSheet(u"QPushButton:hover {\n"
 "	background-color: rgb(0, 0, 166);\n"
 "}\n"
@@ -293,10 +294,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.setSpacing(0)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.lineEdit = QLineEdit(self.frame_4)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setMinimumSize(QSize(200, 40))
-        self.lineEdit.setStyleSheet(u"    QLineEdit {\n"
+        self.search_lineEdit = QLineEdit(self.frame_4)
+        self.search_lineEdit.setObjectName(u"search_lineEdit")
+        self.search_lineEdit.setMinimumSize(QSize(200, 40))
+        self.search_lineEdit.setStyleSheet(u"    QLineEdit {\n"
 "        background-color: #f0f0f0; /* Light grey background */\n"
 "        border: 2px solid rgb(5, 19, 128); /* Your specified color for the border */\n"
 "        border-radius: 5px; /* Rounded corners */\n"
@@ -313,10 +314,11 @@ class Ui_MainWindow(object):
 "    }\n"
 "")
 
-        self.horizontalLayout_7.addWidget(self.lineEdit)
+        self.horizontalLayout_7.addWidget(self.search_lineEdit)
 
         self.pushButton_6 = QPushButton(self.frame_4)
         self.pushButton_6.setObjectName(u"pushButton_6")
+        self.pushButton_6.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon7 = QIcon()
         icon7.addFile(u":/icons/search.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.pushButton_6.setIcon(icon7)
@@ -337,6 +339,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
         self.users_btn = QPushButton(self.frame_2)
         self.users_btn.setObjectName(u"users_btn")
+        self.users_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.users_btn.setStyleSheet(u"QPushButton:hover {\n"
 "	background-color: rgb(0, 0, 166);\n"
 "}\n"
@@ -353,6 +356,7 @@ class Ui_MainWindow(object):
 
         self.notification_btn = QPushButton(self.frame_2)
         self.notification_btn.setObjectName(u"notification_btn")
+        self.notification_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.notification_btn.setStyleSheet(u"QPushButton:hover {\n"
 "	background-color: rgb(0, 0, 166);\n"
 "}\n"
@@ -458,142 +462,44 @@ class Ui_MainWindow(object):
         self.book_page.setObjectName(u"book_page")
         self.verticalLayout_9 = QVBoxLayout(self.book_page)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.frame_12 = QFrame(self.book_page)
-        self.frame_12.setObjectName(u"frame_12")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.frame_12.sizePolicy().hasHeightForWidth())
-        self.frame_12.setSizePolicy(sizePolicy1)
-        self.frame_12.setMaximumSize(QSize(800, 16777215))
-        self.frame_12.setStyleSheet(u"border-radius:10px;\n"
-"background-color: rgb(255, 255, 255);")
-        self.frame_12.setFrameShape(QFrame.StyledPanel)
-        self.frame_12.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_12 = QHBoxLayout(self.frame_12)
-        self.horizontalLayout_12.setSpacing(60)
-        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
-        self.frame_13 = QFrame(self.frame_12)
-        self.frame_13.setObjectName(u"frame_13")
-        self.frame_13.setMinimumSize(QSize(252, 0))
-        self.frame_13.setStyleSheet(u"    QLineEdit {\n"
-"        background-color: #f0f0f0; /* Light grey background */\n"
-"        border: 2px solid rgb(5, 19, 128); /* Your specified color for the border */\n"
-"        border-radius: 5px; /* Rounded corners */\n"
-"        padding: 5px; /* Padding inside the text field */\n"
-"        color: #333333; /* Dark grey text color */\n"
-"        font-size: 14px; /* Font size */\n"
-"    }\n"
-"\n"
-"    QLineEdit:focus {\n"
-"        border: 2px solid rgb(0, 102, 204); /* Complementary blue color for the border when focused */\n"
-"        background-color: #ffffff; /* White background when focused */\n"
-"	       box-shadow: 2px 2px 10px rgba(0, 102, 204, 0.5); /* Stronger shadow when focused */\n"
-"\n"
-"    }\n"
-"")
-        self.frame_13.setFrameShape(QFrame.StyledPanel)
-        self.frame_13.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_18 = QVBoxLayout(self.frame_13)
-        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
-        self.title_lqbel = QLabel(self.frame_13)
-        self.title_lqbel.setObjectName(u"title_lqbel")
-
-        self.verticalLayout_18.addWidget(self.title_lqbel)
-
-        self.Title_lineEdit = QLineEdit(self.frame_13)
-        self.Title_lineEdit.setObjectName(u"Title_lineEdit")
-
-        self.verticalLayout_18.addWidget(self.Title_lineEdit)
-
-        self.author_label = QLabel(self.frame_13)
-        self.author_label.setObjectName(u"author_label")
-
-        self.verticalLayout_18.addWidget(self.author_label)
-
-        self.Author_lineEdit = QLineEdit(self.frame_13)
-        self.Author_lineEdit.setObjectName(u"Author_lineEdit")
-
-        self.verticalLayout_18.addWidget(self.Author_lineEdit)
-
-
-        self.horizontalLayout_12.addWidget(self.frame_13, 0, Qt.AlignLeft)
-
-        self.horizontalSpacer_2 = QSpacerItem(120, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_12.addItem(self.horizontalSpacer_2)
-
-        self.frame_14 = QFrame(self.frame_12)
-        self.frame_14.setObjectName(u"frame_14")
-        self.frame_14.setMinimumSize(QSize(252, 0))
-        self.frame_14.setStyleSheet(u"    QLineEdit {\n"
-"        background-color: #f0f0f0; /* Light grey background */\n"
-"        border: 2px solid rgb(5, 19, 128); /* Your specified color for the border */\n"
-"        border-radius: 5px; /* Rounded corners */\n"
-"        padding: 5px; /* Padding inside the text field */\n"
-"        color: #333333; /* Dark grey text color */\n"
-"        font-size: 14px; /* Font size */\n"
-"    }\n"
-"\n"
-"    QLineEdit:focus {\n"
-"        border: 2px solid rgb(0, 102, 204); /* Complementary blue color for the border when focused */\n"
-"        background-color: #ffffff; /* White background when focused */\n"
-"	       box-shadow: 2px 2px 10px rgba(0, 102, 204, 0.5); /* Stronger shadow when focused */\n"
-"\n"
-"    }\n"
-"")
-        self.frame_14.setFrameShape(QFrame.StyledPanel)
-        self.frame_14.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_19 = QVBoxLayout(self.frame_14)
-        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
-        self.year_pub_label = QLabel(self.frame_14)
-        self.year_pub_label.setObjectName(u"year_pub_label")
-
-        self.verticalLayout_19.addWidget(self.year_pub_label)
-
-        self.YOP_lineEdit = QLineEdit(self.frame_14)
-        self.YOP_lineEdit.setObjectName(u"YOP_lineEdit")
-        self.YOP_lineEdit.setStyleSheet(u"    QLineEdit {\n"
-"        background-color: #f0f0f0; /* Light grey background */\n"
-"        border: 2px solid rgb(5, 19, 128); /* Your specified color for the border */\n"
-"        border-radius: 5px; /* Rounded corners */\n"
-"        padding: 5px; /* Padding inside the text field */\n"
-"        color: #333333; /* Dark grey text color */\n"
-"        font-size: 14px; /* Font size */\n"
-"    }\n"
-"\n"
-"    QLineEdit:focus {\n"
-"        border: 2px solid rgb(0, 102, 204); /* Complementary blue color for the border when focused */\n"
-"        background-color: #ffffff; /* White background when focused */\n"
-"	       box-shadow: 2px 2px 10px rgba(0, 102, 204, 0.5); /* Stronger shadow when focused */\n"
-"\n"
-"    }\n"
-"")
-
-        self.verticalLayout_19.addWidget(self.YOP_lineEdit)
-
-        self.availability_label = QLabel(self.frame_14)
-        self.availability_label.setObjectName(u"availability_label")
-
-        self.verticalLayout_19.addWidget(self.availability_label)
-
-        self.Avai_lineEdit = QLineEdit(self.frame_14)
-        self.Avai_lineEdit.setObjectName(u"Avai_lineEdit")
-
-        self.verticalLayout_19.addWidget(self.Avai_lineEdit)
-
-
-        self.horizontalLayout_12.addWidget(self.frame_14, 0, Qt.AlignRight)
-
-
-        self.verticalLayout_9.addWidget(self.frame_12, 0, Qt.AlignHCenter|Qt.AlignVCenter)
-
         self.frame_11 = QFrame(self.book_page)
         self.frame_11.setObjectName(u"frame_11")
-        self.frame_11.setMinimumSize(QSize(60, 0))
-        self.frame_11.setBaseSize(QSize(80, 0))
-        self.frame_11.setStyleSheet(u"QPushButton{\n"
-"	background-color: rgb(0, 170, 255);\n"
+        self.frame_11.setMinimumSize(QSize(0, 100))
+        self.frame_11.setFrameShape(QFrame.StyledPanel)
+        self.frame_11.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_13 = QHBoxLayout(self.frame_11)
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.frame_13 = QFrame(self.frame_11)
+        self.frame_13.setObjectName(u"frame_13")
+        self.frame_13.setFrameShape(QFrame.StyledPanel)
+        self.frame_13.setFrameShadow(QFrame.Raised)
+        self.label_27 = QLabel(self.frame_13)
+        self.label_27.setObjectName(u"label_27")
+        self.label_27.setGeometry(QRect(11, 20, 50, 50))
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy1.setHorizontalStretch(20)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.label_27.sizePolicy().hasHeightForWidth())
+        self.label_27.setSizePolicy(sizePolicy1)
+        self.label_27.setPixmap(QPixmap(u":/icons/books-dark.png"))
+        self.label_26 = QLabel(self.frame_13)
+        self.label_26.setObjectName(u"label_26")
+        self.label_26.setGeometry(QRect(80, 10, 131, 59))
+        font1 = QFont()
+        font1.setFamilies([u"Noto Sans"])
+        font1.setPointSize(26)
+        font1.setBold(True)
+        self.label_26.setFont(font1)
+        self.label_26.setStyleSheet(u"color:#333")
+
+        self.horizontalLayout_13.addWidget(self.frame_13)
+
+        self.frame_12 = QFrame(self.frame_11)
+        self.frame_12.setObjectName(u"frame_12")
+        self.frame_12.setMinimumSize(QSize(60, 0))
+        self.frame_12.setBaseSize(QSize(80, 0))
+        self.frame_12.setStyleSheet(u"QPushButton{\n"
+"	background-color: rgb(70,130,180);\n"
 "border-radius:10px;\n"
 "\n"
 "}\n"
@@ -606,59 +512,56 @@ class Ui_MainWindow(object):
 "	background-color:rgb(0, 0, 176);\n"
 "border-radius:10px\n"
 "}")
-        self.frame_11.setFrameShape(QFrame.StyledPanel)
-        self.frame_11.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_11 = QHBoxLayout(self.frame_11)
-        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.add_book_btn = QPushButton(self.frame_11)
-        self.add_book_btn.setObjectName(u"add_book_btn")
-        self.add_book_btn.setStyleSheet(u"QPushButton{\n"
-"	background-color: rgb(0, 170, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(0, 0, 166);\n"
-"	color: rgb(255, 255, 255);\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"	background-color:rgb(0, 0, 176);\n"
-"}")
+        self.frame_12.setFrameShape(QFrame.StyledPanel)
+        self.frame_12.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_12 = QHBoxLayout(self.frame_12)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.add_book_btn_2 = QPushButton(self.frame_12)
+        self.add_book_btn_2.setObjectName(u"add_book_btn_2")
+        self.add_book_btn_2.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.add_book_btn_2.setStyleSheet(u"")
         icon13 = QIcon()
         icon13.addFile(u":/icons/add-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.add_book_btn.setIcon(icon13)
+        self.add_book_btn_2.setIcon(icon13)
 
-        self.horizontalLayout_11.addWidget(self.add_book_btn)
+        self.horizontalLayout_12.addWidget(self.add_book_btn_2)
 
-        self.modify_book_btn = QPushButton(self.frame_11)
-        self.modify_book_btn.setObjectName(u"modify_book_btn")
+        self.modify_book_btn_2 = QPushButton(self.frame_12)
+        self.modify_book_btn_2.setObjectName(u"modify_book_btn_2")
+        self.modify_book_btn_2.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon14 = QIcon()
         icon14.addFile(u":/icons/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.modify_book_btn.setIcon(icon14)
+        self.modify_book_btn_2.setIcon(icon14)
 
-        self.horizontalLayout_11.addWidget(self.modify_book_btn)
+        self.horizontalLayout_12.addWidget(self.modify_book_btn_2)
 
-        self.delete_book_btn = QPushButton(self.frame_11)
-        self.delete_book_btn.setObjectName(u"delete_book_btn")
+        self.delete_book_btn_2 = QPushButton(self.frame_12)
+        self.delete_book_btn_2.setObjectName(u"delete_book_btn_2")
+        self.delete_book_btn_2.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon15 = QIcon()
         icon15.addFile(u":/icons/delete.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.delete_book_btn.setIcon(icon15)
+        self.delete_book_btn_2.setIcon(icon15)
 
-        self.horizontalLayout_11.addWidget(self.delete_book_btn)
+        self.horizontalLayout_12.addWidget(self.delete_book_btn_2)
 
-        self.print_btn = QPushButton(self.frame_11)
-        self.print_btn.setObjectName(u"print_btn")
+        self.print_btn_2 = QPushButton(self.frame_12)
+        self.print_btn_2.setObjectName(u"print_btn_2")
+        self.print_btn_2.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon16 = QIcon()
         icon16.addFile(u":/icons/print.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.print_btn.setIcon(icon16)
+        self.print_btn_2.setIcon(icon16)
 
-        self.horizontalLayout_11.addWidget(self.print_btn)
+        self.horizontalLayout_12.addWidget(self.print_btn_2)
 
 
-        self.verticalLayout_9.addWidget(self.frame_11, 0, Qt.AlignLeft|Qt.AlignBottom)
+        self.horizontalLayout_13.addWidget(self.frame_12, 0, Qt.AlignRight)
+
+
+        self.verticalLayout_9.addWidget(self.frame_11)
 
         self.tableWidget_books = QTableWidget(self.book_page)
-        if (self.tableWidget_books.columnCount() < 5):
-            self.tableWidget_books.setColumnCount(5)
+        if (self.tableWidget_books.columnCount() < 10):
+            self.tableWidget_books.setColumnCount(10)
         __qtablewidgetitem = QTableWidgetItem()
         self.tableWidget_books.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
@@ -669,19 +572,62 @@ class Ui_MainWindow(object):
         self.tableWidget_books.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         __qtablewidgetitem4 = QTableWidgetItem()
         self.tableWidget_books.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        if (self.tableWidget_books.rowCount() < 5):
-            self.tableWidget_books.setRowCount(5)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        self.tableWidget_books.setHorizontalHeaderItem(5, __qtablewidgetitem5)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.tableWidget_books.setHorizontalHeaderItem(6, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.tableWidget_books.setHorizontalHeaderItem(7, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.tableWidget_books.setHorizontalHeaderItem(8, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.tableWidget_books.setHorizontalHeaderItem(9, __qtablewidgetitem9)
+        if (self.tableWidget_books.rowCount() < 15):
+            self.tableWidget_books.setRowCount(15)
         self.tableWidget_books.setObjectName(u"tableWidget_books")
-        sizePolicy1.setHeightForWidth(self.tableWidget_books.sizePolicy().hasHeightForWidth())
-        self.tableWidget_books.setSizePolicy(sizePolicy1)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.tableWidget_books.sizePolicy().hasHeightForWidth())
+        self.tableWidget_books.setSizePolicy(sizePolicy2)
         self.tableWidget_books.setMinimumSize(QSize(500, 300))
+        self.tableWidget_books.setStyleSheet(u"QTableView {\n"
+"    border: 1px solid #d3d3d3;\n"
+"    gridline-color: #d3d3d3;\n"
+"    background-color: #f9f9f9;\n"
+"    alternate-background-color: #e9e9e9;\n"
+"    selection-background-color: #a0c4ff;\n"
+"    selection-color: #ffffff;\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #4a90e2;\n"
+"    color: white;\n"
+"    padding: 4px;\n"
+"    border: 1px solid #d3d3d3;\n"
+"}\n"
+"\n"
+"QTableView::item {\n"
+"    padding: 5px;\n"
+"    border: none;\n"
+"}\n"
+"\n"
+"QTableView::item:selected {\n"
+"    background-color: #a0c4ff;\n"
+"    color: #ffffff;\n"
+"}\n"
+"\n"
+"QTableView::item:hover {\n"
+"    background-color: #d3eaff;\n"
+"    color: #000000;\n"
+"}")
         self.tableWidget_books.setGridStyle(Qt.NoPen)
-        self.tableWidget_books.setRowCount(5)
-        self.tableWidget_books.setColumnCount(5)
+        self.tableWidget_books.setRowCount(15)
+        self.tableWidget_books.setColumnCount(10)
         self.tableWidget_books.horizontalHeader().setStretchLastSection(True)
         self.tableWidget_books.verticalHeader().setStretchLastSection(True)
 
-        self.verticalLayout_9.addWidget(self.tableWidget_books, 0, Qt.AlignVCenter)
+        self.verticalLayout_9.addWidget(self.tableWidget_books)
 
         self.stackedWidget.addWidget(self.book_page)
         self.author_page = QWidget()
@@ -689,24 +635,24 @@ class Ui_MainWindow(object):
         self.label_7 = QLabel(self.author_page)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setGeometry(QRect(520, 200, 161, 181))
-        font1 = QFont()
-        font1.setPointSize(25)
-        font1.setBold(True)
-        self.label_7.setFont(font1)
+        font2 = QFont()
+        font2.setPointSize(25)
+        font2.setBold(True)
+        self.label_7.setFont(font2)
         self.stackedWidget.addWidget(self.author_page)
         self.sub_page = QWidget()
         self.sub_page.setObjectName(u"sub_page")
         self.label_8 = QLabel(self.sub_page)
         self.label_8.setObjectName(u"label_8")
         self.label_8.setGeometry(QRect(540, 200, 151, 181))
-        self.label_8.setFont(font1)
+        self.label_8.setFont(font2)
         self.stackedWidget.addWidget(self.sub_page)
         self.management_page = QWidget()
         self.management_page.setObjectName(u"management_page")
         self.label_9 = QLabel(self.management_page)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setGeometry(QRect(520, 210, 55, 191))
-        self.label_9.setFont(font1)
+        self.label_9.setFont(font2)
         self.stackedWidget.addWidget(self.management_page)
 
         self.verticalLayout_7.addWidget(self.stackedWidget)
@@ -799,21 +745,19 @@ class Ui_MainWindow(object):
         self.sub_btn.setText(QCoreApplication.translate("MainWindow", u"Subscribers", None))
         self.exit_btn.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.menu_btn.setText("")
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search ...", None))
+        self.search_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search ...", None))
         self.pushButton_6.setText("")
         self.users_btn.setText("")
         self.notification_btn.setText("")
         self.minimize_btn.setText("")
         self.restore_win_btn.setText("")
         self.close_btn.setText("")
-        self.title_lqbel.setText(QCoreApplication.translate("MainWindow", u"Title", None))
-        self.author_label.setText(QCoreApplication.translate("MainWindow", u"Author", None))
-        self.year_pub_label.setText(QCoreApplication.translate("MainWindow", u"Year of publishing", None))
-        self.availability_label.setText(QCoreApplication.translate("MainWindow", u"Availability", None))
-        self.add_book_btn.setText("")
-        self.modify_book_btn.setText("")
-        self.delete_book_btn.setText("")
-        self.print_btn.setText("")
+        self.label_27.setText("")
+        self.label_26.setText(QCoreApplication.translate("MainWindow", u"Books", None))
+        self.add_book_btn_2.setText("")
+        self.modify_book_btn_2.setText("")
+        self.delete_book_btn_2.setText("")
+        self.print_btn_2.setText("")
         ___qtablewidgetitem = self.tableWidget_books.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"ID", None));
         ___qtablewidgetitem1 = self.tableWidget_books.horizontalHeaderItem(1)
@@ -823,7 +767,17 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem3 = self.tableWidget_books.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Year", None));
         ___qtablewidgetitem4 = self.tableWidget_books.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Availability", None));
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Category", None));
+        ___qtablewidgetitem5 = self.tableWidget_books.horizontalHeaderItem(5)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Disponibility", None));
+        ___qtablewidgetitem6 = self.tableWidget_books.horizontalHeaderItem(6)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"ISBN", None));
+        ___qtablewidgetitem7 = self.tableWidget_books.horizontalHeaderItem(7)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Description", None));
+        ___qtablewidgetitem8 = self.tableWidget_books.horizontalHeaderItem(8)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Book cover", None));
+        ___qtablewidgetitem9 = self.tableWidget_books.horizontalHeaderItem(9)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Availability", None));
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"3", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"4", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"5", None))

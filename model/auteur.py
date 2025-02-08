@@ -1,29 +1,106 @@
-from PySide6.QtWidgets import QMainWindow, QTableWidgetItem, QHeaderView
-from book_ui import Ui_MainWindow  # Import your UI file
-from mongo_db import MongoDB  # Import MongoDB connection class
+from PyQt6.QtWidgets import (
+    QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTableWidget, QTableWidgetItem,
+    QPushButton, QLabel, QLineEdit, QHeaderView, QComboBox, QListWidget, QSplitter, QFrame
+)
+from PyQt6.QtGui import QPixmap
+import sys
 
-class BookView(QMainWindow):
+class LibraryApp(QWidget):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+        self.setWindowTitle("Library System")
+        self.setGeometry(100, 100, 900, 500)
+        self.initUI()
 
-        self.mongo = MongoDB()
-        self.load_books()
+    def initUI(self):
+        main_layout = QHBoxLayout()
+        
+        # Side Menu
+        side_menu = QListWidget()
+        side_menu.addItem("📚 Book")
+        side_menu.addItem("📖 E-Books")
+        side_menu.addItem("📩 Send Request")
+        
+        # Splitter to separate side menu and main content
+        splitter = QSplitter()
+        splitter.addWidget(side_menu)
+        
+        # Main Content Layout
+        content_layout = QVBoxLayout()
+        
+        # Search Bar
+        search_layout = QHBoxLayout()
+        self.search_input = QLineEdit()
+        self.search_input.setPlaceholderText("Search for...")
+        search_button = QPushButton("Search")
+        search_layout.addWidget(self.search_input)
+        search_layout.addWidget(search_button)
+        
+        # Table
+        self.table = QTableWidget()
+        self.table.setColumnCount(5)  # Book Title, Category, Cover, Read, Download
+        self.table.setHorizontalHeaderLabels(["Book Title", "Category", "Book Cover", "Read", "Download"])
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.table.setStyleSheet(""
+            "QHeaderView::section {"
+            "background-color: #2C3E50;"
+            "color: #ECF0F1;"
+            "font-size: 18px;"
+            "font-weight: bold;"
+            "padding: 8px;"
+            "border: 1px solid #34495E;"
+            "border-radius: 5px;"
+            "}"
+            "QTableWidget::item {"
+            "padding: 10px;"
+            "border-bottom: 1px solid #d3d3d3;"
+            "}"
+        "")
+        
+        # Load Data
+        self.load_data()
+        
+        content_layout.addLayout(search_layout)
+        content_layout.addWidget(self.table)
+        
+        # Add content to splitter
+        content_frame = QFrame()
+        content_frame.setLayout(content_layout)
+        splitter.addWidget(content_frame)
+        
+        main_layout.addWidget(splitter)
+        self.setLayout(main_layout)
+    
+    def load_data(self):
+        books = [
+            ("Architecture", "Programming", "image.png"),
+            ("JavaScript", "Programming", "image.png"),
+            ("NLP", "Programming", "image.png"),
+        ]
+        
+        self.table.setRowCount(len(books))
+        
+        for row, (title, category, cover) in enumerate(books):
+            self.table.setItem(row, 0, QTableWidgetItem(title))
+            self.table.setItem(row, 1, QTableWidgetItem(category))
+            
+            # Book Cover
+            cover_label = QLabel()
+            pixmap = QPixmap(cover)
+            cover_label.setPixmap(pixmap.scaled(50, 50))
+            cover_label.setStyleSheet("font-size: 26px; font-weight: bold; color: #333;")
+            self.table.setCellWidget(row, 2, cover_label)
+            
+            # Read Button
+            read_button = QPushButton("View PDF")
+            self.table.setCellWidget(row, 3, read_button)
+            
+            # Download Button
+            download_button = QPushButton("Download PDF")
+            self.table.setCellWidget(row, 4, download_button)
 
-        # Make columns expand with the window size
-        self.ui.tableWidget_book.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-
-    def load_books(self):
-        books = self.mongo.get_books()
-        self.ui.tableWidget_book.setRowCount(len(books))
-        self.ui.tableWidget_book.setColumnCount(len(books[0]) if books else 0)
-
-        for row_idx, book in enumerate(books):
-            for col_idx, (key, value) in enumerate(book.items()):
-                item = QTableWidgetItem(str(value))
-                self.ui.tableWidget_book.setItem(row_idx, col_idx, item)
-
-        # Set column headers
-        if books:
-            self.ui.tableWidget_book.setHorizontalHeaderLabels(books[0].keys())
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = LibraryApp()
+    window.show()
+    sys.exit(app.exec())
